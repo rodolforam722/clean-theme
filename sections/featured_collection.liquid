@@ -1,0 +1,52 @@
+<div class="featured-collection" id="section-{{section.id}}">
+  <h2>{{section.settings.title}}</h2>
+  <p>{{section.settings.description}}</p>
+  {% if section.settings.collection != blank %}
+    {% assign featured_collection = collections[section.settings.collection] %}
+    <div class="featured-collection__products">  
+      <div class="grid">
+        {% for product in featured_collection.products limit: 3 %}
+          <div class="featured-collection__product">
+            <a href="{{ product.url }}">
+              <img src="{{ product.featured_image | img_url: width: 400 }}" alt="{{ product.title }}" width="100px" height="100px">
+              <h3>{{ product.title }}</h3>
+              <p>{{ product.price | money }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <p>Selecciona una colección en la configuración de la sección.</p>
+  {% endif %}
+
+</div>
+
+{%  schema  %} 
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection"
+      }
+    ]
+  }
+  
+  {% endschema %}

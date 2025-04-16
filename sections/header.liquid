@@ -1,0 +1,28 @@
+<header>
+  <div>
+    <p>{{ settings.site_name }}</p> {% comment  %} display global setting {% endcomment %}
+  </div>
+  <nav>
+    <ul>
+      {% for link in section.settings.header_menu.links %} {% comment  %} loop menu items {% endcomment %}
+        <li>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
+{%  schema  %} 
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "header_menu",
+      "label": "Header Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+
+{% endschema %}

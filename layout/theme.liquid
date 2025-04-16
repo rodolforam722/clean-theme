@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  {{content_for_header}}
+  <meta charset="UTF-8">
+  <title>Hola</title>
+</head>
+<body>
+  {%  section 'header' %} {% comment  %} render header section  {% endcomment %}
+  {{content_for_layout}} {% comment  %} display page content  {% endcomment %}
+</body>
+</html>

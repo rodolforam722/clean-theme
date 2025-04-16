@@ -1,0 +1,12 @@
+[
+  {
+  "name": "Cnonfiguration",
+  "settings": [
+    {
+      "type": "text",
+      "id": "site_name",
+      "label": "Site Name"
+    }
+  ]
+}
+]
