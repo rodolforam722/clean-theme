@@ -1,6 +1,8 @@
 <header>
-  <div>
-    <p>{{ settings.site_name }}</p> {% comment  %} display global setting {% endcomment %}
+  <div class="logo">
+    <h1>
+      <a href="/">{{ settings.site_name }}</a> {% comment  %} display global setting {% endcomment %}
+    </h1>
   </div>
   <nav>
     <ul>
@@ -12,6 +14,7 @@
     </ul>
   </nav>
 </header>
+
 {%  schema  %} 
 {
   "name": "Header",

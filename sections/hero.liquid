@@ -1,7 +1,31 @@
+{%  style  %}
+
+#section-{{section.id}} {
+    position: relative; /* Asegúrate de que el contenedor tenga posición relativa */
+  }
+
+  #section-{{section.id}} img {
+    border: 2px solid red;
+    width: 100%;
+  }
+
+  #section-{{section.id}} h2 {
+    border: 2px solid green;
+  }
+  .hero__content{
+    position: absolute;
+    margin: -120px 0px 0px 70px;
+    color: var(--white);
+  }
+
+{% endstyle %}
+
 <section class="hero" id="section-{{section.id}}">
-<img src="{{section.settings.hero_image |  img_url:'750x'}}" alt="{{section.settings.title}}" width="100px" height="100px"/> 
-<h1>{{section.settings.title}}</h1>
-<p>{{section.settings.description}}</p>
+  <img src="{{section.settings.hero_image |  img_url:'750x'}}" alt="{{section.settings.title}}"/> 
+  <div class="hero__content">
+    <h2>{{section.settings.title}}</h2>
+    <p>{{section.settings.description}}</p>
+  </div>
 </section>
 
 {%  schema  %} 

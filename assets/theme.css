@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
+
+:root {
+  /*Colors */
+  --black: black;
+  --white: white;
+  --dark-grey: #353535;
+  
+  
+  /*Fonts */
+  --primary-font: 'Inter', sans-serif;
+  --secondary-font: 'Oswald', sans-serif;
+
+  /* Size */
+  --size-1: 4px;
+  --size-2: 8px;
+  --size-3: 12px;
+  --size-4: 16px;
+  --size-5: 20px;
+  --size-6: 24px;
+  --size-7: 28px;
+  --size-8: 32px;
+  --size-9: 36px;
+  --size-10: 40px;
+  --size-11: 44px;
+  --size-12: 48px;
+  --size-14: 56px;
+  --size-16: 64px;
+  --size-18: 72px;
+  --size-20: 80px;
+  --max-width: 1120px;
+}
+
+  /* Meyer reset*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+body {
+  font-family: var(--primary-font);
+  font-weight: 300;
+  background-color: var(--white);
+  color: var(--black);
+}
+  /* Headings : apply to all headings*/
+h1,h2,h3,h4{
+  font-family: var(--secondary-font);
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+h2{
+  font-size: var(--size-18);
+}
+
+h3{
+  font-size: var(--size-12);
+}
+
+.container{
+  max-width: var(--max-width);
+}
+
+header{
+  max-width: var(--max-width);
+  margin: var(--size-10) auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 a{
+  font-size: var(--size-7);
+  text-decoration: none;
+  color: var(--black);
+}
+
+header nav ul{
+  display: flex;
+  list-style: none;
+  gap: var(--size-5);
+}
+
+header nav ul a{
+  color: var(--black);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: var(--secondary-font); 
+}
+
+header nav ul a:hover{
+  text-decoration: underline;
+}

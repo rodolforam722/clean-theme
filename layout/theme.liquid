@@ -4,6 +4,7 @@
   {{content_for_header}}
   <meta charset="UTF-8">
   <title>Hola</title>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 <body>
   {%  section 'header' %} {% comment  %} render header section  {% endcomment %}
