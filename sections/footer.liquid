@@ -1,0 +1,32 @@
+<footer>
+  <div class="footer__wrapper container">
+    <nav>
+      <ul>
+        {% for link in section.settings.footer_menu.links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="logo">
+      <h1>
+        <a href="/">{{ settings.site_name }}</a>
+      </h1>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer Menu",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}

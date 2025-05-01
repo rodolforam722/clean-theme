@@ -1,59 +1,133 @@
-{%  style  %}
-  
+{% style %}
+  #section-{{section.id}} {
+    margin: auto;
+  }
+
+  #section-{{section.id}} h3, a {
+    text-decoration: none;
+    color: var(--black);
+
+  }
+
+  #section-{{section.id}} .swiper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  #section-{{section.id}} .swiper-pagination-bullet-active {
+    background: var(--black);
+  }
+
+  #section-{{section.id}} .featured-collection__products {
+    padding-bottom: var(--size-20);
+  }
+
+  #section-{{section.id}} img {
+    width: 100%;
+  }
+
+  #section-{{section.id}} .featured-collection__product p {
+  margin-bottom: 8px;
+  }
+
+  #section-{{section.id}} a {
+    display: inline-block;
+    margin-top: 8px;
+    text-transform: uppercase;
+    text-decoration: underline;
+  }
+
+  #section-{{section.id}} .swiper-button {
+    color: var(--black);
+    margin: -110px var(--size-10) 0 var(--size-10);
+  }
+  #section-{{section.id}} .wrapper {
+    width: 100%;
+  }
+  #section-{{section.id}} .featured-collection__wrapper {
+    position: relative;
+  }
 
 {% endstyle %}
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 <div class="featured-collection" id="section-{{section.id}}">
-  <h2>{{section.settings.title}}</h2>
-  <p>{{section.settings.description}}</p>
+  <div class="container">
+    <h3>{{ section.settings.title }}</h3>
+    <p>{{ section.settings.description }}</p>
+  </div>
+
   {% if section.settings.collection != blank %}
     {% assign featured_collection = collections[section.settings.collection] %}
-    <div class="featured-collection__products">  
-      <div class="grid">
-        {% for product in featured_collection.products limit: 3 %}
-          <div class="featured-collection__product">
-            <a href="{{ product.url }}">
-              <img src="{{ product.featured_image | img_url: width: 400 }}" alt="{{ product.title }}" width="100px" height="100px">
-              <h3>{{ product.title }}</h3>
+    <div class="featured-collection__wrapper">
+      <div class="featured-collection__products swiper mySwiper  container">
+        <div class="swiper-wrapper">
+          {% for product in featured_collection.products limit: 6 %}
+            <div class="featured-collection__product swiper-slide ">
+              <img src="{{ product.featured_image | img_url: width: 900 }}" alt="{{ product.title }}">
+              <p>{{ product.title }}</p>
               <p>{{ product.price | money }}</p>
-            </a>
-          </div>
-        {% endfor %}
+              <a href="{{ product.url }}" class="buy-now">{{ section.settings.cta }}</a>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
       </div>
+      <div class="swiper-button-prev swiper-button"></div>
+      <div class="swiper-button-next swiper-button"></div>
     </div>
-  {% else %}
-    <p>Selecciona una colección en la configuración de la sección.</p>
   {% endif %}
-
 </div>
 
-{%  schema  %} 
-  {
-    "name": "Featured Collection",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type": "richtext",
-        "id": "description",
-        "label": "Description"
-      },
-      {
-        "type": "collection",
-        "id": "collection",
-        "label": "Collection"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Featured Collection"
-      }
-    ]
-  }
-  
-  {% endschema %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper('.mySwiper', {
+    slidesPerView: 3,
+    spaceBetween: 1,
+    freeMode: false,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Call To Action",
+      "default": "BUY NOW"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

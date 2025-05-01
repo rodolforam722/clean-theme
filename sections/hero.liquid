@@ -1,21 +1,28 @@
 {%  style  %}
 
-#section-{{section.id}} {
-    position: relative; /* Asegúrate de que el contenedor tenga posición relativa */
+  #section-{{section.id}} {
+    position: relative;
   }
 
   #section-{{section.id}} img {
-    border: 2px solid red;
     width: 100%;
   }
 
-  #section-{{section.id}} h2 {
-    border: 2px solid green;
-  }
-  .hero__content{
+  #section-{{section.id}} .hero__content{
     position: absolute;
-    margin: -120px 0px 0px 70px;
+    top: 0;
     color: var(--white);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  #section-{{section.id}} .hero__content__texts{
+    width: 100%;
+    padding: var(--size-5) 0;
+    text-align: {{ section.settings.text_alignment }};
   }
 
 {% endstyle %}
@@ -23,8 +30,10 @@
 <section class="hero" id="section-{{section.id}}">
   <img src="{{section.settings.hero_image |  img_url:'750x'}}" alt="{{section.settings.title}}"/> 
   <div class="hero__content">
+    <div class="hero__content__texts container">
     <h2>{{section.settings.title}}</h2>
     <p>{{section.settings.description}}</p>
+    </div>
   </div>
 </section>
 
@@ -46,7 +55,28 @@
         "type": "richtext",
         "id": "description",
         "label": "Description"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
       }
+
     ],
     "presets": [
       {
