@@ -1,31 +1,30 @@
-<header>
-  <div class="logo">
-    <h1>
-      <a href="/">{{ settings.site_name }}</a> {% comment  %} display global setting {% endcomment %}
-    </h1>
-  </div>
-  <nav>
-    <ul>
-      {% for link in section.settings.header_menu.links %} {% comment  %} loop menu items {% endcomment %}
-        <li>
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </nav>
+<header class="header">
+<div class="logo">
+  <h1>
+    <a href="/">{{ settings.site_name }}</a> 
+  </h1>
+</div>
+<input class="menu-btn" type="checkbox" id="menu-btn" />
+<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+<ul class="menu">
+  {% for link in section.settings.header_menu.links %}
+    <li>
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    </li>
+  {% endfor %}
+</ul>  
 </header>
-
 {%  schema  %} 
 {
-  "name": "Header",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "header_menu",
-      "label": "Header Menu",
-      "default": "main-menu"
-    }
-  ]
+"name": "Header",
+"settings": [
+  {
+    "type": "link_list",
+    "id": "header_menu",
+    "label": "Header Menu",
+    "default": "main-menu"
+  }
+]
 }
 
 {% endschema %}

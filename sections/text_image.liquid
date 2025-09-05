@@ -1,80 +1,50 @@
-{% style %}
-  #section-{{section.id}} {
-    display: flex;
-    width:100%;
+{%style%}
+@media (min-width: 768px) {
+  #section-{{section.id}}.text-image {
+   display: flex;
   }
-
-  #section-{{section.id}} .text_image__content {
-    width: 50%;
-    background-color: var(--dark-grey);
-    color: var(--white);
-    display: flex;
-    justify-content: right;
-    order: {{ section.settings.layout_order }};
-    {%  if section.settings.layout_order == "1"  %}
-    justify-content: left;
-    {% endif %}
+}
+#section-{{section.id}}.text-image__image img{
+  width: 100%;
+}
+@media (min-width: 768px) {
+  #section-{{section.id}}.text-image__image, #section-{{section.id}}.text-image__text {
+    flex: 1;
   }
+}
+{%endstyle%}
 
-  #section-{{section.id}} .text_image__content__text{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    text-align: {{ section.settings.text_alignment }};
-  }
-
-  #section-{{section.id}} .text_image__wrapper {
-    width: 50%;
-  }
-
-  #section-{{section.id}} img {
-      width: 100%;
-    }
-    #section-{{section.id}} a  {
-      color: var(--white);
-      text-transform: uppercase;
-    }
-{% endstyle %}
-
-<section class="text_image" id="section-{{section.id}}">
-  <div class="text_image__content">
-    <div class="text_image__content__text container-half">
-      <h2>{{ section.settings.title }}</h2>
-      <p>{{ section.settings.description }}</p>
-      {% if section.settings.button_link and section.settings.button_text %}
-        <a href="{{ section.settings.button_link }}">
-          {{ section.settings.button_text }}
-        </a>
-      {% endif %}
-    </div>
+<div class="text-image" id="section-{{section.id}}">
+  <div class="text-image__image">
+    <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}">
   </div>
-  <div class="text_image__wrapper">
-    <img src="{{section.settings.text_image |  img_url:'750x'}}" alt="{{section.settings.title}}">
+  <div class="text-image__text">
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.description }}</p>
   </div>
-</section>
+</div>
 
-{% schema %}
-{
-  "name": "Text_image",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "text_image",
-      "label": "Image"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title"
-    },
-    {
-      "type": "richtext",
-      "id": "description",
-      "label": "Description"
-    },
-    {
+{% schema  %}
+ 
+  {
+     "name": "Text Image",
+     "settings": [
+       {
+         "type": "text",
+         "id": "title",
+         "label": "Title"
+       },
+       {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
       "type": "select",
       "id": "text_alignment",
       "label": "Text alignment",
@@ -94,37 +64,11 @@
       ],
       "default": "center"
     },
-    {
-      "type": "select",
-      "id": "layout_order",
-      "label": "Order Content",
-      "options": [
-        {
-          "value": "1",
-          "label": "Image left"
-        },
-        {
-          "value": "0",
-          "label": "Image right"
-        }
-      ],
-      "default": "0"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button text"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Text_image"
-    }
-  ]
-}
-{% endschema %}
+     ],
+     "presets": [
+       {
+         "name": "Text Image"
+       }
+     ]
+   }
+ {% endschema %}

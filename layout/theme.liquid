@@ -7,8 +7,11 @@
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 <body>
-  {%  section 'header' %} {% comment  %} render header section  {% endcomment %}
-  {{content_for_layout}} {% comment  %} display page content  {% endcomment %}
+  {%  section 'header' %}
+  <div class="main"> {% comment  %} render header section  {% endcomment %}
+    {{content_for_layout}} 
+  </div>
   {% section 'footer' %}
+  </div>
 </body>
 </html>
