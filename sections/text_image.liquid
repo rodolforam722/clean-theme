@@ -1,18 +1,29 @@
-{%style%}
-@media (min-width: 768px) {
-  #section-{{section.id}}.text-image {
-   display: flex;
+{% style %}
+  @media (min-width: 768px) {
+    #section-{{section.id}}.text-image {
+     display: flex;
+    }
   }
-}
-#section-{{section.id}}.text-image__image img{
-  width: 100%;
-}
-@media (min-width: 768px) {
-  #section-{{section.id}}.text-image__image, #section-{{section.id}}.text-image__text {
-    flex: 1;
+  #section-{{section.id}}.text-image__image img{
+    width: 100%;
   }
-}
-{%endstyle%}
+  @media (min-width: 768px) {
+    #section-{{section.id}}.text-image__image, #section-{{section.id}}.text-image__text {
+      flex: 1;
+    }
+  }
+
+  #section-{{section.id}} .text-image__text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #section-{{section.id}} .text-image__text__btn {
+    color: var(--black);
+    text-transform: uppercase;
+  }
+{% endstyle %}
 
 <div class="text-image" id="section-{{section.id}}">
   <div class="text-image__image">
@@ -21,30 +32,44 @@
   <div class="text-image__text">
     <h2>{{ section.settings.title }}</h2>
     <p>{{ section.settings.description }}</p>
+    {% if section.settings.button_link and section.settings.button_text %}
+      <a class="text-image__text__btn" href="{{ section.settings.button_link }}">
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
   </div>
 </div>
 
-{% schema  %}
- 
-  {
-     "name": "Text Image",
-     "settings": [
-       {
-         "type": "text",
-         "id": "title",
-         "label": "Title"
-       },
-       {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description"
-        },
-        {
+{% schema %}
+{
+  "name": "Text Image",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
       "type": "select",
       "id": "text_alignment",
       "label": "Text alignment",
@@ -63,12 +88,12 @@
         }
       ],
       "default": "center"
-    },
-     ],
-     "presets": [
-       {
-         "name": "Text Image"
-       }
-     ]
-   }
- {% endschema %}
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text Image"
+    }
+  ]
+}
+{% endschema %}
