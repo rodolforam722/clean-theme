@@ -1,26 +1,27 @@
-{%style %}
-  #section-{{section.id}} {
-  display: flex;
-  justify-content: center;
-  padding: var(--size-10);
-}
+{% style %}
+   #section-{{section.id}} {
+    display: flex;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    #section-{{section.id}}{
+     justify-content: center;
+   }
+  }
 
-#section-{{section.id}} .site_description__content{
-  width: 50%;
-  text-align: center;
-  justify-content: center;
-  padding: var(--size-10);
+  #section-{{section.id}} .site_description__content {
+    width: 100%;
+    max-width: 420px;
+    padding: var(--size-6);
+  }
 
-}
+  #section-{{section.id}} .site_description__content__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-3);
+  }
 
-#section-{{section.id}} .site_description__content__text{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-
-#section-{{section.id}} .site_description__content__text__btn  {
+  #section-{{section.id}} .site_description__content__text__btn {
     color: var(--black);
     text-transform: uppercase;
   }
@@ -29,54 +30,46 @@
 <section class="site_description" id="section-{{section.id}}">
   <div class="site_description__content">
     <div class="site_description__content__text container">
-      <h2>{{section.settings.title}}</h2>
-      <p>{{section.settings.description}}</p>
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.description }}</p>
       {% if section.settings.button_link and section.settings.button_text %}
         <a class="site_description__content__text__btn" href="{{ section.settings.button_link }}">
           {{ section.settings.button_text }}
         </a>
       {% endif %}
     </div>
-
   </div>
-
-
 </section>
 
-
-
-{% schema  %}
- 
- {
-    "name": "Site_description",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type": "richtext",
-        "id": "description",
-        "label": "Description"
-      },
-      {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button link"
-      },
-      {
-        "type": "text",
-        "id": "button_text",
-        "label": "Button text"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Site_description"
-      }
-    ]
-  }
-
-
+{% schema %}
+{
+  "name": "Site_description",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Site_description"
+    }
+  ]
+}
 {% endschema %}
