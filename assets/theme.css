@@ -127,6 +127,30 @@ img {
   font-family: var(--secondary-font);
 }
 
+/* footer */
+
+.footer {
+  padding: 20px 0;
+  border-top: 1px solid #000;
+}
+
+.footer ul{
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.footer li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+
+
 /* menu */
 
 .header .menu {
