@@ -137,7 +137,7 @@ img {
 .footer ul{
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 25px;
 }
 
 .footer li a {
