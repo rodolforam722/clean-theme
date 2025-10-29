@@ -6,6 +6,8 @@
   }
   #section-{{section.id}} .text-image__image img{
     width: 100%;
+    height: 215px;
+    object-fit: cover;
   }
   @media (min-width: 768px) {
     #section-{{section.id}}.text-image__image, #section-{{section.id}}.text-image__text {
@@ -14,13 +16,26 @@
   }
 
   #section-{{section.id}} .text-image__text{
+    background-color: var(--dark-grey);
+    color: var(--white);
+  }
+
+  #section-{{section.id}} .text-image__text__inner{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: var(--dark-grey);
-    color: var(--white);
-    
+    padding: 20px;
+    text-align: {{ section.settings.text_alignment }};
   }
+
+  #section-{{section.id}} .text-image__text__inner h2 {
+    font-size: var(--size-10);
+    }
+
+  #section-{{section.id}} .text-image__text__inner p {
+  font-size: var(--size-4);
+  }
+
 
   #section-{{section.id}} .text-image__text__btn {
     color: var(--white);
@@ -33,13 +48,15 @@
     <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}">
   </div>
   <div class="text-image__text">
-    <h2>{{ section.settings.title }}</h2>
-    <p>{{ section.settings.description }}</p>
-    {% if section.settings.button_link and section.settings.button_text %}
-      <a class="text-image__text__btn" href="{{ section.settings.button_link }}">
-        {{ section.settings.button_text }}
-      </a>
-    {% endif %}
+    <div class="text-image__text__inner">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.description }}</p>
+      {% if section.settings.button_link and section.settings.button_text %}
+        <a class="text-image__text__btn" href="{{ section.settings.button_link }}">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
   </div>
 </div>
 
