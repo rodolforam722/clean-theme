@@ -2,6 +2,14 @@
 
   #section-{{section.id}} {
     position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    #section-{{section.id}} {
+      height: 400px;
+      overflow: hidden;
+    }
   }
 
   #section-{{section.id}} img {
